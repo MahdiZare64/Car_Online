@@ -1,54 +1,96 @@
 import React from "react";
-import { Image, StyleSheet } from "react-native";
-import { View } from "native-base";
+import { StyleSheet, useWindowDimensions } from "react-native";
+import { View, Image } from "native-base";
 
 import Wrapper from "../components/Wrapper";
 import TwinColorButton from "../components/TwinColorButton";
-import { CurveLine, StraightLine } from "../assets/icons";
+import { CurveLine } from "../assets/icons";
 
 export default function test() {
+  const { height, width } = useWindowDimensions();
   return (
     <Wrapper>
       <View flexDirection="row-reverse" alignItems="center">
-        <View>
+        <View height="100%" width="100%">
           <Image
             source={require("../assets/img/car.png")}
             style={styles.image}
-            resizeMode="cover"
+            resizeMode="contain"
+            height="100%"
+            width="100%"
+            marginRight="-50%"
           />
         </View>
-        <View left={-130} zIndex={-1}>
+
+        <View
+          right="20%"
+          top={height < 600 ? 0 : "auto"}
+          position="absolute"
+          zIndex={-1}
+        >
           {/* top button */}
           <View>
-            <TwinColorButton label="کارشناسی خودرو" />
-            <View right={-50} top={-5}>
-              <CurveLine />
+            <TwinColorButton small={height < 600} label="کارشناسی خودرو" />
+            <View right={-50} top={-5} flexDirection="row">
+              <CurveLine small={height < 600} />
+              <View
+                width={width}
+                height="1px"
+                backgroundColor="colors.secondary"
+                marginTop={height < 600 ? "70.5px" : "135px"}
+                left={height < 600 ? "-8px" : "-13px"}
+              />
             </View>
           </View>
           {/* top button */}
 
           {/* middle button */}
-          <View height="85px">
-            <TwinColorButton label="محاسبه قیمت" isRight />
-            <View right={-100} top={-35} zIndex={-1}>
-              <StraightLine />
+          <View height={height < 600 ? "50px" : "85px"}>
+            <TwinColorButton
+              small={height < 600}
+              label="محاسبه قیمت"
+              isRight
+            />
+            <View
+              right={height < 600 ? -50 : -100}
+              top={height < 600 ? -20 : -35}
+              zIndex={-1}
+            >
+              <View
+                width={width}
+                height="1px"
+                backgroundColor="colors.secondary"
+              />
             </View>
           </View>
+          {/* middle button */}
 
-          <View height="85px">
-            <TwinColorButton label="نمایشگاه" isRight />
+          {/* middle button */}
+          <View height={height < 600 ? "50px" : "85px"}>
+            <TwinColorButton small={height < 600} label="نمایشگاه" isRight />
             <View right={-100} top={-35} zIndex={-1}>
-              <StraightLine />
+              <View
+                width={width}
+                height="1px"
+                backgroundColor="colors.secondary"
+              />
             </View>
           </View>
           {/* middle button */}
 
           {/* bottom button */}
           <View>
-            <View right={-50} bottom={-20}>
-              <CurveLine down />
+            <View right={-40} bottom={-20} flexDirection="row">
+              <CurveLine down small={height < 600} />
+              <View
+                width={width}
+                height="1px"
+                backgroundColor="colors.secondary"
+                marginTop={height < 600 ? "-2.5px" : "-4px"}
+                left={height < 600 ? "-6px" : "-13px"}
+              />
             </View>
-            <TwinColorButton label="فروشگاه" />
+            <TwinColorButton small={height < 600} label="فروشگاه" />
           </View>
           {/* bottom button */}
         </View>

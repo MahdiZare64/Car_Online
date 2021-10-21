@@ -7,7 +7,7 @@ export default function empty() {
     <Wrapper>
       <Center w="100%" h="100%">
         <Text
-          fontFamily="BnazaninBold"
+          fontFamily="PeydaBold"
           fontSize="xl"
           _dark={{ color: "colors.light" }}
           _light={{ color: "colors.dark" }}

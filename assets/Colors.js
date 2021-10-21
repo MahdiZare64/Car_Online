@@ -4,6 +4,7 @@ const Colors = {
   dark: "#333333",
   light: "#FFFFFF",
   gray: "#414040",
+  lightGray: "#707070",
 };
 
 export default Colors;

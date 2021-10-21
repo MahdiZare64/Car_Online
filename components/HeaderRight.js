@@ -4,7 +4,7 @@ import { Ionicons, SimpleLineIcons } from "@expo/vector-icons";
 import { useColorMode } from "native-base";
 import Colors from "../assets/Colors";
 
-export default function HeaderRight() {
+export default function HeaderRight({ isBgColored }) {
   const { colorMode } = useColorMode();
   return (
     <View
@@ -20,13 +20,23 @@ export default function HeaderRight() {
           padding: 5,
           elevation: colorMode === "light" ? 0 : 15,
           backgroundColor:
-            colorMode === "light" ? Colors.primary : "transparent",
+            colorMode === "light"
+              ? isBgColored
+                ? "#fff"
+                : Colors.primary
+              : "transparent",
         }}
       >
         <Ionicons
           name="menu"
           size={28}
-          color="#fff"
+          color={
+            isBgColored
+              ? colorMode === "light"
+                ? Colors.primary
+                : Colors.light
+              : "#fff"
+          }
         />
       </View>
       <TouchableOpacity onPress={() => console.log("hmmmmm")}>
@@ -34,7 +44,9 @@ export default function HeaderRight() {
           <SimpleLineIcons
             name="bell"
             size={23}
-            color={colorMode === "light" ? "#000" : "#fff"}
+            color={
+              isBgColored ? "#fff" : colorMode === "light" ? "#000" : "#fff"
+            }
           />
         </View>
       </TouchableOpacity>

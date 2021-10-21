@@ -5,8 +5,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import {
   Ionicons,
   SimpleLineIcons,
-  MaterialIcons,
-  FontAwesome5,
 } from "@expo/vector-icons";
 import { ServiceIcone, GarageIcon, SupportIcon } from "../assets/icons";
 
@@ -18,7 +16,7 @@ import Colors from "../assets/Colors";
 
 import HomeScreen from "../Screens/HomeScreen";
 import ServicesScreen from "../Screens/ServicesScreen";
-import GarageScreen from "../Screens/GarageScreen";
+import GarageScreen from "../Screens/ProductListScreen";
 import InquiryScreen from "../Screens/InquiryScreen";
 import SupportScreen from "../Screens/SupportScreen";
 
@@ -46,7 +44,7 @@ export default function MyTabs() {
           tabBarLabelStyle: {
             flex: 1,
             marginTop: -10,
-            fontFamily: "BnazaninBold",
+            fontFamily: "Peyda",
             color: colorMode === "light" ? Colors.dark : Colors.light,
             fontSize: 13,
           },
@@ -54,6 +52,12 @@ export default function MyTabs() {
           headerTransparent: true,
           headerRight: () => <HeaderRight />,
           headerLeft: () => <ChangeThemeButton />,
+          headerTitleAlign: "center",
+          headerTitleStyle: {
+            color: Colors.light,
+            marginTop: 5,
+            fontFamily: "PeydaBold",
+          },
         }}
       >
         <Tab.Screen
@@ -63,11 +67,7 @@ export default function MyTabs() {
             title: "",
             tabBarLabel: "خدمات",
             tabBarIcon: ({ focused }) => (
-              <FontAwesome5
-                name="hand-holding-water"
-                size={focused ? 38 : 24}
-                color={colorMode === "light" ? Colors.dark : Colors.light}
-              />
+              <ServiceIcone size={focused ? 38 : 24} colorMode={colorMode} />
             ),
           }}
         />
@@ -79,11 +79,7 @@ export default function MyTabs() {
             title: "",
             tabBarLabel: "گاراژ",
             tabBarIcon: ({ focused }) => (
-              <FontAwesome5
-                name="tools"
-                size={focused ? 38 : 24}
-                color={colorMode === "light" ? Colors.dark : Colors.light}
-              />
+              <GarageIcon size={focused ? 38 : 24} colorMode={colorMode} />
             ),
           }}
         />
@@ -92,7 +88,7 @@ export default function MyTabs() {
           name="Home"
           component={HomeScreen}
           options={{
-            title: "",
+            title: "Car Online",
             tabBarLabel: "خانه",
             tabBarIcon: ({ focused }) => (
               <Ionicons
@@ -127,11 +123,7 @@ export default function MyTabs() {
             title: "",
             tabBarLabel: "پشتیبانی",
             tabBarIcon: ({ focused }) => (
-              <MaterialIcons
-                name="support-agent"
-                size={focused ? 38 : 24}
-                color={colorMode === "light" ? Colors.dark : Colors.light}
-              />
+              <SupportIcon size={focused ? 38 : 24} colorMode={colorMode} />
             ),
           }}
         />
