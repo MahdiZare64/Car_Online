@@ -1,83 +1,29 @@
 import React from "react";
-import { StyleSheet, Dimensions, FlatList } from "react-native";
+import { FlatList } from "react-native";
 import { View } from "native-base";
 
 import Wrapper from "../components/Wrapper";
+import TopCircle from "../components/TopCircle";
 import CustomInput from "../components/CustomInput";
 import FilterButton from "../components/FilterButton";
 import CarCard from "../components/CarCard";
 
-const data = [
-  {
-    img: require("../assets/img/car1.png"),
+import data from "../Dummy/DummyData"
 
-    name: "bmw series",
-  },
-  {
-    img: require("../assets/img/car2.png"),
+export default function ProductListScreen({ navigation }) {
+  const cardClick = (name, series, image, percent, data) => {
+    navigation.navigate("detailScreen", {
+      name: name || "بدون نام",
+      series: series || "بدون سری",
+      image: image || require("../assets/img/car1.png"),
+      percent: percent || 0,
+      data: data || [],
+    });
+  };
 
-    name: "porshe",
-  },
-  {
-    img: require("../assets/img/car3.png"),
-
-    name: "benz series",
-  },
-  {
-    img: require("../assets/img/car1.png"),
-
-    name: "lexus series",
-  },
-  {
-    img: require("../assets/img/car1.png"),
-
-    name: "bmw series",
-  },
-  {
-    img: require("../assets/img/car2.png"),
-
-    name: "porshe",
-  },
-  {
-    img: require("../assets/img/car3.png"),
-
-    name: "benz series",
-  },
-  {
-    img: require("../assets/img/car2.png"),
-
-    name: "lexus series",
-  },
-  {
-    img: require("../assets/img/car1.png"),
-
-    name: "bmw series",
-  },
-  {
-    img: require("../assets/img/car2.png"),
-
-    name: "porshe",
-  },
-  {
-    img: require("../assets/img/car3.png"),
-
-    name: "benz series",
-  },
-  {
-    img: require("../assets/img/car3.png"),
-
-    name: "lexus series",
-  },
-];
-
-export default function ProductListScreen({navigation}) {
   return (
-    <Wrapper navigation={navigation}>
-      <View
-        style={styles.circle}
-        _dark={{ backgroundColor: "colors.secondary" }}
-        _light={{ backgroundColor: "colors.primary" }}
-      ></View>
+    <Wrapper navigation={navigation} title="car online" isBgColored>
+      <TopCircle />
 
       <FlatList
         data={data}
@@ -94,20 +40,18 @@ export default function ProductListScreen({navigation}) {
             img={item.item.img}
             title={item.item.name}
             isSecond={item.index % 2 == 0}
+            onPress={() =>
+              cardClick(
+                item.item.name,
+                item.item.series,
+                item.item.img,
+                item.item.percent,
+                item.item.data
+              )
+            }
           />
         )}
       />
     </Wrapper>
   );
 }
-
-const styles = StyleSheet.create({
-  circle: {
-    width: Dimensions.get("screen").width * 1.5,
-    height: Dimensions.get("screen").width * 1.5,
-    borderRadius: Dimensions.get("screen").width * 0.75,
-    left: Dimensions.get("screen").width * -0.25,
-    top: Dimensions.get("screen").width * -0.6,
-    position: "absolute",
-  },
-});

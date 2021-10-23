@@ -6,10 +6,10 @@ import Wrapper from "../components/Wrapper";
 import TwinColorButton from "../components/TwinColorButton";
 import { CurveLine } from "../assets/icons";
 
-export default function test() {
+export default function HomeScreen({ navigation }) {
   const { height, width } = useWindowDimensions();
   return (
-    <Wrapper>
+    <Wrapper navigation={navigation} title="">
       <View flexDirection="row-reverse" alignItems="center">
         <View height="100%" width="100%">
           <Image
@@ -46,11 +46,7 @@ export default function test() {
 
           {/* middle button */}
           <View height={height < 600 ? "50px" : "85px"}>
-            <TwinColorButton
-              small={height < 600}
-              label="محاسبه قیمت"
-              isRight
-            />
+            <TwinColorButton small={height < 600} label="محاسبه قیمت" isRight />
             <View
               right={height < 600 ? -50 : -100}
               top={height < 600 ? -20 : -35}

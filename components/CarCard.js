@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { StyleSheet, Dimensions, TouchableOpacity } from "react-native";
 import { Text, View, Image } from "native-base";
 
-export default function CarCard({ img, title, isSecond }) {
+export default function CarCard({ img, title, isSecond, onPress }) {
   useEffect(() => {
     console.log(title, isSecond);
   });
@@ -46,7 +46,7 @@ export default function CarCard({ img, title, isSecond }) {
         </View>
         <TouchableOpacity
           style={{ padding: 10 }}
-          onPress={() => console.log("pressed!")}
+          onPress={onPress}
         >
           <Text
             color="colors.lightGray"

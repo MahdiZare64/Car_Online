@@ -2,21 +2,22 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 
-import {
-  Ionicons,
-  SimpleLineIcons,
-} from "@expo/vector-icons";
+// icons
+import { Ionicons, SimpleLineIcons } from "@expo/vector-icons";
 import { ServiceIcone, GarageIcon, SupportIcon } from "../assets/icons";
 
+// navigation components
 import ChangeThemeButton from "../components/ChangeThemeButton";
 import HeaderRight from "../components/HeaderRight";
 
+// colors
 import { useColorMode } from "native-base";
 import Colors from "../assets/Colors";
 
+// screens
 import HomeScreen from "../Screens/HomeScreen";
 import ServicesScreen from "../Screens/ServicesScreen";
-import GarageScreen from "../Screens/ProductListScreen";
+import ProductListScreen from "./GarageNavigator";
 import InquiryScreen from "../Screens/InquiryScreen";
 import SupportScreen from "../Screens/SupportScreen";
 
@@ -54,7 +55,7 @@ export default function MyTabs() {
           headerLeft: () => <ChangeThemeButton />,
           headerTitleAlign: "center",
           headerTitleStyle: {
-            color: Colors.light,
+            color: colorMode === "light" ? Colors.dark : Colors.light,
             marginTop: 5,
             fontFamily: "PeydaBold",
           },
@@ -74,13 +75,18 @@ export default function MyTabs() {
 
         <Tab.Screen
           name="Garage"
-          component={GarageScreen}
+          component={ProductListScreen}
           options={{
-            title: "",
+            title: "نمایشگاه",
             tabBarLabel: "گاراژ",
             tabBarIcon: ({ focused }) => (
               <GarageIcon size={focused ? 38 : 24} colorMode={colorMode} />
             ),
+            headerRight: () => <HeaderRight isBgColored />,
+            headerLeft: () => <ChangeThemeButton isBgColored />,
+            headerTitleStyle: {
+              color: Colors.light,
+            },
           }}
         />
 

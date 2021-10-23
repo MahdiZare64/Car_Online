@@ -2,9 +2,9 @@ import React from "react";
 import { Center, Text } from "native-base";
 import Wrapper from "../components/Wrapper";
 
-export default function empty() {
+export default function empty({navigation}) {
   return (
-    <Wrapper>
+    <Wrapper navigation={navigation}>
       <Center w="100%" h="100%">
         <Text
           fontFamily="PeydaBold"
