@@ -16,7 +16,7 @@ export default function TwinColorButton({
           _dark={{ backgroundColor: "colors.primary" }}
           _light={{ backgroundColor: "colors.secondary" }}
           height={small ? "40px" : "60px"}
-          width={small ? "80px" : "120px"}
+          width={small ? "90px" : "120px"}
           borderRadius={small ? "15px" : "23px"}
           justifyContent="center"
         >
@@ -35,6 +35,7 @@ export default function TwinColorButton({
             color="colors.light"
             fontSize={small ? "xs" : "md"}
             textAlign="center"
+            marginX="5px"
           >
             {label}
           </Text>

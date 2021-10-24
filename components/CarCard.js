@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { StyleSheet, Dimensions, TouchableOpacity } from "react-native";
 import { Text, View, Image } from "native-base";
 
-export default function CarCard({ img, title, isSecond, onPress }) {
+export default function CarCard({ isProduct, img, title, isSecond, onPress }) {
   useEffect(() => {
     console.log(title, isSecond);
   });
@@ -36,7 +36,7 @@ export default function CarCard({ img, title, isSecond, onPress }) {
             paddingX="10"
             noOfLines={1}
           >
-            {title || "test"}
+            {title || "بدون عنوان"}
           </Text>
           <View
             borderBottomWidth="0.7"
@@ -44,16 +44,13 @@ export default function CarCard({ img, title, isSecond, onPress }) {
             marginX="10px"
           />
         </View>
-        <TouchableOpacity
-          style={{ padding: 10 }}
-          onPress={onPress}
-        >
+        <TouchableOpacity style={{ padding: 10 }} onPress={onPress}>
           <Text
             color="colors.lightGray"
             fontFamily="PeydaBold"
             textAlign="center"
           >
-            انتخاب خودرو
+            {isProduct ? "انتخاب خودرو" : "انتخاب سری"}
           </Text>
         </TouchableOpacity>
       </View>

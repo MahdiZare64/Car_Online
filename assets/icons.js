@@ -105,27 +105,50 @@ export const SupportIcon = ({ size, colorMode }) => {
   );
 };
 
+// export const CurveLine = ({ down, small }) => {
+//   return (
+//     <Svg
+//       xmlns="http://www.w3.org/2000/svg"
+//       xlink="http://www.w3.org/1999/xlink"
+//       width={small ? "60" : "167.617"}
+//       height={small ? "50" : "150.635"}
+//       viewBox="0 0 167.617 150.635"
+//       rotation={down && 90}
+//     >
+//       <G transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Path_1)">
+//         <Path
+//           id="Path_1-2"
+//           data-name="Path 1"
+//           d="M119.5,312s-6.908,120.32,149.832,133"
+//           transform="translate(-114.42 -309.36)"
+//           fill="none"
+//           stroke="#8C0009"
+//           stroke-width="10"
+//         />
+//       </G>
+//     </Svg>
+//   );
+// };
+
 export const CurveLine = ({ down, small }) => {
   return (
     <Svg
-      xmlns="http://www.w3.org/2000/svg"
+    xmlns="http://www.w3.org/2000/svg"
       xlink="http://www.w3.org/1999/xlink"
-      width={small ? "90" : "167.617"}
-      height={small ? "80" : "150.635"}
+      width={small ? "60" : "167.617"}
+      height={small ? "50" : "150.635"}
       viewBox="0 0 167.617 150.635"
       rotation={down && 90}
     >
-      <G transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Path_1)">
-        <Path
-          id="Path_1-2"
-          data-name="Path 1"
-          d="M119.5,312s-6.908,120.32,149.832,133"
-          transform="translate(-114.42 -309.36)"
-          fill="none"
-          stroke="#8C0009"
-          stroke-width="10"
-        />
-      </G>
+      <Path
+        id="Path_1"
+        data-name="Path 1"
+        d="M119.5,312s-6.908,120.32,149.832,133"
+        transform="translate(-116.918 -311.857)"
+        fill="none"
+        stroke="#FF003D"
+        stroke-width="5"
+      />
     </Svg>
   );
 };

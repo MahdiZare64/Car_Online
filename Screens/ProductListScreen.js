@@ -7,11 +7,13 @@ import TopCircle from "../components/TopCircle";
 import CustomInput from "../components/CustomInput";
 import FilterButton from "../components/FilterButton";
 import CarCard from "../components/CarCard";
+import FloatingButton from "../components/FloatingButton";
 
-import data from "../Dummy/DummyData"
+import productsList from "../Dummy/productsList";
+import categoryList from "../Dummy/categoryList";
 
-export default function ProductListScreen({ navigation }) {
-  const cardClick = (name, series, image, percent, data) => {
+export default function ProductListScreen({ navigation, route }) {
+  const productClick = (name, series, image, percent, data) => {
     navigation.navigate("detailScreen", {
       name: name || "بدون نام",
       series: series || "بدون سری",
@@ -21,12 +23,20 @@ export default function ProductListScreen({ navigation }) {
     });
   };
 
+  const seriesClick = () => {
+    navigation.push("productListScreen", { isProduct: true });
+  };
+
+  console.log(navigation, route);
+
   return (
     <Wrapper navigation={navigation} title="car online" isBgColored>
       <TopCircle />
 
       <FlatList
-        data={data}
+        data={
+          route.params && route.params.isProduct ? productsList : categoryList
+        }
         keyExtractor={(item, index) => index}
         numColumns="2"
         ListHeaderComponent={() => (
@@ -37,21 +47,28 @@ export default function ProductListScreen({ navigation }) {
         )}
         renderItem={(item) => (
           <CarCard
+            isProduct={route.params && route.params.isProduct}
             img={item.item.img}
             title={item.item.name}
             isSecond={item.index % 2 == 0}
-            onPress={() =>
-              cardClick(
-                item.item.name,
-                item.item.series,
-                item.item.img,
-                item.item.percent,
-                item.item.data
-              )
-            }
+            onPress={() => {
+              if (route.params && route.params.isProduct) {
+                productClick(
+                  item.item.name,
+                  item.item.series,
+                  item.item.img,
+                  item.item.percent,
+                  item.item.data
+                );
+              } else {
+                seriesClick();
+              }
+            }}
           />
         )}
       />
+
+      {route.params && route.params.isProduct ? <FloatingButton /> : <></>}
     </Wrapper>
   );
 }

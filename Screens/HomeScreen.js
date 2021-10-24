@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, useWindowDimensions } from "react-native";
+import { StyleSheet, useWindowDimensions, ScrollView } from "react-native";
 import { View, Image } from "native-base";
 
 import Wrapper from "../components/Wrapper";
@@ -21,40 +21,47 @@ export default function HomeScreen({ navigation }) {
             marginRight="-50%"
           />
         </View>
-
-        <View
+        <ScrollView
           right="20%"
-          top={height < 600 ? 0 : "auto"}
+          top={height < 750 ? 0 : "auto"}
           position="absolute"
           zIndex={-1}
+          height="100%"
+          justifyContent="center"
         >
+          <View marginTop={height < 450 ? "30px" : "0"} />
           {/* top button */}
           <View>
-            <TwinColorButton small={height < 600} label="کارشناسی خودرو" />
-            <View right={-50} top={-5} flexDirection="row">
-              <CurveLine small={height < 600} />
+            <TwinColorButton small={height < 750} label="کارشناسی خودرو" />
+            <View right={-50} top={-5} flexDirection="row" zIndex="-1">
+              <Image
+                source={require("../assets/curve.png")}
+                height={height < 750 ? "47px" : "150px"}
+                width={height < 750 ? "60px" : "167px"}
+                resizeMode="contain"
+              />
               <View
                 width={width}
                 height="1px"
-                backgroundColor="colors.secondary"
-                marginTop={height < 600 ? "70.5px" : "135px"}
-                left={height < 600 ? "-8px" : "-13px"}
+                backgroundColor="colors.primary"
+                marginTop={height < 750 ? "45px" : "135px"}
+                left={height < 750 ? "-8px" : "-13px"}
               />
             </View>
           </View>
           {/* top button */}
 
           {/* middle button */}
-          <View height={height < 600 ? "50px" : "85px"}>
-            <TwinColorButton small={height < 600} label="محاسبه قیمت" isRight />
+          <View height={height < 750 ? "50px" : "85px"}>
+            <TwinColorButton small={height < 750} label="محاسبه قیمت" isRight />
             <View
-              right={height < 600 ? -50 : -100}
-              top={height < 600 ? -20 : -35}
+              right={height < 750 ? -50 : -100}
+              top={height < 750 ? -20 : -35}
               zIndex={-1}
             >
               <View
                 width={width}
-                height="1px"
+                height="2px"
                 backgroundColor="colors.secondary"
               />
             </View>
@@ -62,12 +69,21 @@ export default function HomeScreen({ navigation }) {
           {/* middle button */}
 
           {/* middle button */}
-          <View height={height < 600 ? "50px" : "85px"}>
-            <TwinColorButton small={height < 600} label="نمایشگاه" isRight />
-            <View right={-100} top={-35} zIndex={-1}>
+          <View height={height < 750 ? "50px" : "85px"}>
+            <TwinColorButton
+              onPress={() => navigation.navigate("Garage")}
+              small={height < 750}
+              label="نمایشگاه"
+              isRight
+            />
+            <View
+              right={height < 750 ? -50 : -100}
+              top={height < 750 ? -20 : -35}
+              zIndex={-1}
+            >
               <View
                 width={width}
-                height="1px"
+                height="2px"
                 backgroundColor="colors.secondary"
               />
             </View>
@@ -77,19 +93,25 @@ export default function HomeScreen({ navigation }) {
           {/* bottom button */}
           <View>
             <View right={-40} bottom={-20} flexDirection="row">
-              <CurveLine down small={height < 600} />
+              <Image
+                source={require("../assets/curve.png")}
+                height={height < 750 ? "47px" : "150px"}
+                width={height < 750 ? "60px" : "167px"}
+                resizeMode="contain"
+                transform={[{ rotate: "90deg" }]}
+              />
               <View
                 width={width}
                 height="1px"
-                backgroundColor="colors.secondary"
-                marginTop={height < 600 ? "-2.5px" : "-4px"}
-                left={height < 600 ? "-6px" : "-13px"}
+                backgroundColor="colors.primary"
+                marginTop={height < 750 ? "-3px" : "-4px"}
+                left={height < 750 ? "-8px" : "-13px"}
               />
             </View>
-            <TwinColorButton small={height < 600} label="فروشگاه" />
+            <TwinColorButton small={height < 750} label="فروشگاه" />
           </View>
           {/* bottom button */}
-        </View>
+        </ScrollView>
       </View>
     </Wrapper>
   );
