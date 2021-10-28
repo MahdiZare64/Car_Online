@@ -4,7 +4,6 @@ import { View, Image } from "native-base";
 
 import Wrapper from "../components/Wrapper";
 import TwinColorButton from "../components/TwinColorButton";
-import { CurveLine } from "../assets/icons";
 
 export default function HomeScreen({ navigation }) {
   const { height, width } = useWindowDimensions();
@@ -19,6 +18,7 @@ export default function HomeScreen({ navigation }) {
             height="100%"
             width="100%"
             marginRight="-50%"
+            alt="car image"
           />
         </View>
         <ScrollView
@@ -39,6 +39,7 @@ export default function HomeScreen({ navigation }) {
                 height={height < 750 ? "47px" : "150px"}
                 width={height < 750 ? "60px" : "167px"}
                 resizeMode="contain"
+                alt="curved line"
               />
               <View
                 width={width}
@@ -71,7 +72,14 @@ export default function HomeScreen({ navigation }) {
           {/* middle button */}
           <View height={height < 750 ? "50px" : "85px"}>
             <TwinColorButton
-              onPress={() => navigation.navigate("Garage")}
+              onPress={() =>
+                navigation.push("HomeScreen", {
+                  screen: "DrawerHome",
+                  params: {
+                    screen: "Garage",
+                  },
+                })
+              }
               small={height < 750}
               label="نمایشگاه"
               isRight
@@ -99,6 +107,7 @@ export default function HomeScreen({ navigation }) {
                 width={height < 750 ? "60px" : "167px"}
                 resizeMode="contain"
                 transform={[{ rotate: "90deg" }]}
+                alt="curved line"
               />
               <View
                 width={width}
@@ -108,7 +117,24 @@ export default function HomeScreen({ navigation }) {
                 left={height < 750 ? "-8px" : "-13px"}
               />
             </View>
-            <TwinColorButton small={height < 750} label="فروشگاه" />
+            <TwinColorButton
+              onPress={() => {
+                navigation.push("HomeScreen", {
+                  screen: "DrawerHome",
+                  params: {
+                    screen: "Garage",
+                    params: {
+                      screen: "productListScreen",
+                      params: {
+                        isShop: true,
+                      },
+                    },
+                  },
+                });
+              }}
+              small={height < 750}
+              label="فروشگاه"
+            />
           </View>
           {/* bottom button */}
         </ScrollView>

@@ -1,6 +1,6 @@
 const data = [
   {
-    name: "bmw series ",
+    name: " series ",
     img: require("../assets/img/car1.png"),
   },
   {

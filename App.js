@@ -3,7 +3,7 @@ import { NativeBaseProvider, extendTheme } from "native-base";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 
-import MainNavigator from "./navigation/BottomTab";
+import MainNavigator from "./navigation/HomeNavigator";
 
 import { I18nManager } from "react-native";
 import { Restart } from "fiction-expo-restart";
@@ -17,7 +17,7 @@ const theme = extendTheme({
     colors: Colors,
   },
   config: {
-    initialColorMode: "light",
+    initialColorMode: "dark",
   },
 });
 

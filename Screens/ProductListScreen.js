@@ -9,8 +9,9 @@ import FilterButton from "../components/FilterButton";
 import CarCard from "../components/CarCard";
 import FloatingButton from "../components/FloatingButton";
 
-import productsList from "../Dummy/productsList";
+import carsList from "../Dummy/carsList";
 import categoryList from "../Dummy/categoryList";
+import productCategoryList from "../Dummy/productCategoryList";
 
 export default function ProductListScreen({ navigation, route }) {
   const productClick = (name, series, image, percent, data) => {
@@ -22,12 +23,11 @@ export default function ProductListScreen({ navigation, route }) {
       data: data || [],
     });
   };
-
   const seriesClick = () => {
     navigation.push("productListScreen", { isProduct: true });
   };
 
-  console.log(navigation, route);
+  console.log(route);
 
   return (
     <Wrapper navigation={navigation} title="car online" isBgColored>
@@ -35,7 +35,11 @@ export default function ProductListScreen({ navigation, route }) {
 
       <FlatList
         data={
-          route.params && route.params.isProduct ? productsList : categoryList
+          route?.params?.isProduct
+            ? carsList
+            : route?.params?.isShop
+            ? productCategoryList
+            : categoryList
         }
         keyExtractor={(item, index) => index}
         numColumns="2"
@@ -47,12 +51,12 @@ export default function ProductListScreen({ navigation, route }) {
         )}
         renderItem={(item) => (
           <CarCard
-            isProduct={route.params && route.params.isProduct}
+            isProduct={route?.params?.isProduct}
             img={item.item.img}
             title={item.item.name}
             isSecond={item.index % 2 == 0}
             onPress={() => {
-              if (route.params && route.params.isProduct) {
+              if (route?.params?.isProduct) {
                 productClick(
                   item.item.name,
                   item.item.series,
@@ -68,7 +72,7 @@ export default function ProductListScreen({ navigation, route }) {
         )}
       />
 
-      {route.params && route.params.isProduct ? <FloatingButton /> : <></>}
+      {route?.params?.isProduct ? <FloatingButton /> : <></>}
     </Wrapper>
   );
 }

@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { FlatList, useWindowDimensions } from "react-native";
 import { Text, View, Image, Progress, Button } from "native-base";
 
 import Wrapper from "../components/Wrapper";
 import TopCircle from "../components/TopCircle";
 import DetailCarBox from "../components/DetailCarBox";
+import ExpertRequestModal from "../components/ExpertRequestModal";
 
 export default function DetailsScreen({ route }) {
   const { height, width } = useWindowDimensions();
 
   const params = route.params;
+
+  const [visible, isVisible] = useState(false);
 
   return (
     <Wrapper>
@@ -24,8 +27,7 @@ export default function DetailsScreen({ route }) {
                 fontFamily="Peyda"
                 fontSize="md"
                 marginX="20px"
-                _light={{ color: "colors.light" }}
-                _dark={{ color: "colors.dark" }}
+                color="colors.light"
               >
                 {params.series}
               </Text>
@@ -35,8 +37,7 @@ export default function DetailsScreen({ route }) {
                 fontSize="2xl"
                 marginX="20px"
                 marginTop="20px"
-                _light={{ color: "colors.light" }}
-                _dark={{ color: "colors.dark" }}
+                color="colors.light"
               >
                 {params.name}
               </Text>
@@ -46,6 +47,7 @@ export default function DetailsScreen({ route }) {
                 height="70%"
                 resizeMode="contain"
                 right="-20%"
+                alt="car image"
               />
             </View>
           )}
@@ -109,7 +111,7 @@ export default function DetailsScreen({ route }) {
                 marginTop="30px"
               >
                 <Button
-                  onPress={() => console.log("hmmm")}
+                  onPress={() => isVisible(!visible)}
                   size="lg"
                   width={width * 0.3}
                   height={width * 0.15}
@@ -144,6 +146,7 @@ export default function DetailsScreen({ route }) {
           )}
         />
       </View>
+      <ExpertRequestModal visible={visible} />
     </Wrapper>
   );
 }

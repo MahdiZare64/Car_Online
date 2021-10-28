@@ -4,7 +4,7 @@ import { Ionicons, SimpleLineIcons } from "@expo/vector-icons";
 import { useColorMode } from "native-base";
 import Colors from "../assets/Colors";
 
-export default function HeaderRight({ isBgColored }) {
+export default function HeaderRight({ isBgColored, navigation }) {
   const { colorMode } = useColorMode();
   return (
     <View
@@ -14,31 +14,33 @@ export default function HeaderRight({ isBgColored }) {
         flexDirection: "row-reverse",
       }}
     >
-      <View
-        style={{
-          borderRadius: 50,
-          padding: 5,
-          elevation: colorMode === "light" ? 0 : 15,
-          backgroundColor:
-            colorMode === "light"
-              ? isBgColored
-                ? "#fff"
-                : Colors.primary
-              : "transparent",
-        }}
-      >
-        <Ionicons
-          name="menu"
-          size={28}
-          color={
-            isBgColored
-              ? colorMode === "light"
-                ? Colors.primary
-                : Colors.light
-              : "#fff"
-          }
-        />
-      </View>
+      <TouchableOpacity onPress={navigation.openDrawer}>
+        <View
+          style={{
+            borderRadius: 50,
+            padding: 5,
+            elevation: colorMode === "light" ? 0 : 15,
+            backgroundColor:
+              colorMode === "light"
+                ? isBgColored
+                  ? "#fff"
+                  : Colors.primary
+                : "transparent",
+          }}
+        >
+          <Ionicons
+            name="menu"
+            size={28}
+            color={
+              isBgColored
+                ? colorMode === "light"
+                  ? Colors.primary
+                  : Colors.light
+                : "#fff"
+            }
+          />
+        </View>
+      </TouchableOpacity>
       <TouchableOpacity onPress={() => console.log("hmmmmm")}>
         <View style={{ padding: 7 }}>
           <SimpleLineIcons

@@ -1,11 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { StyleSheet, Dimensions, TouchableOpacity } from "react-native";
 import { Text, View, Image } from "native-base";
 
 export default function CarCard({ isProduct, img, title, isSecond, onPress }) {
-  useEffect(() => {
-    console.log(title, isSecond);
-  });
+
   return (
     <View
       width={Dimensions.get("window").width / 2 - 40}
@@ -18,7 +16,7 @@ export default function CarCard({ isProduct, img, title, isSecond, onPress }) {
       justifyContent="space-between"
     >
       <View marginY="5px">
-        <Image source={img} resizeMode="contain" />
+        <Image source={img} resizeMode="contain" alt="car image" />
       </View>
       <View
         width="100%"
