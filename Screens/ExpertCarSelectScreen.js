@@ -13,18 +13,16 @@ import carsList from "../Dummy/carsList";
 import categoryList from "../Dummy/categoryList";
 import productCategoryList from "../Dummy/productCategoryList";
 
-export default function ProductListScreen({ navigation, route }) {
-  const productClick = (name, series, image, percent, data) => {
-    navigation.navigate("detailScreen", {
+export default function carSelect({ navigation, route }) {
+  const productClick = (name, image) => {
+    navigation.navigate("expertForm", {
       name: name || "بدون نام",
-      series: series || "بدون سری",
       image: image || require("../assets/img/car1.png"),
-      percent: percent || 0,
-      data: data || [],
+      carSelected: true,
     });
   };
   const seriesClick = () => {
-    navigation.push("productListScreen", { isProduct: true });
+    navigation.push("carSelect", { isProduct: true });
   };
 
   return (
@@ -55,13 +53,7 @@ export default function ProductListScreen({ navigation, route }) {
             isSecond={item.index % 2 == 0}
             onPress={() => {
               if (route?.params?.isProduct) {
-                productClick(
-                  item.item.name,
-                  item.item.series,
-                  item.item.img,
-                  item.item.percent,
-                  item.item.data
-                );
+                productClick(item.item.name, item.item.img);
               } else {
                 seriesClick();
               }

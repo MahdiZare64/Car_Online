@@ -1,25 +1,12 @@
 import React, { useEffect } from "react";
-import { NativeBaseProvider, extendTheme } from "native-base";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 
-import MainNavigator from "./navigation/HomeNavigator";
+import MainNavigator from "./navigation/MainNavigator";
+import ColorModeManager from "./utils/ColorModeManager";
 
 import { I18nManager } from "react-native";
 import { Restart } from "fiction-expo-restart";
-
-// Define the config
-
-// extend the theme
-import Colors from "./assets/Colors";
-const theme = extendTheme({
-  colors: {
-    colors: Colors,
-  },
-  config: {
-    initialColorMode: "dark",
-  },
-});
 
 export default function App() {
   const [font] = useFonts({
@@ -42,9 +29,9 @@ export default function App() {
     return <AppLoading />;
   } else {
     return (
-      <NativeBaseProvider theme={theme}>
+      <ColorModeManager>
         <MainNavigator />
-      </NativeBaseProvider>
+      </ColorModeManager>
     );
   }
 }

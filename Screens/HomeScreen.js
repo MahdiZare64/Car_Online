@@ -32,7 +32,13 @@ export default function HomeScreen({ navigation }) {
           <View marginTop={height < 450 ? "30px" : "0"} />
           {/* top button */}
           <View>
-            <TwinColorButton small={height < 750} label="کارشناسی خودرو" />
+            <TwinColorButton
+              small={height < 750}
+              label="کارشناسی خودرو"
+              onPress={() =>
+                navigation.navigate("expertForm")
+              }
+            />
             <View right={-50} top={-5} flexDirection="row" zIndex="-1">
               <Image
                 source={require("../assets/curve.png")}
@@ -81,7 +87,7 @@ export default function HomeScreen({ navigation }) {
                 })
               }
               small={height < 750}
-              label="نمایشگاه"
+              label="گاراژ"
               isRight
             />
             <View

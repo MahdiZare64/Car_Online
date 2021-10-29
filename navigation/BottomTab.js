@@ -14,7 +14,7 @@ import { useColorMode } from "native-base";
 import Colors from "../assets/Colors";
 
 // screens
-import HomeScreen from "../Screens/HomeScreen";
+import HomeScreen from "./HomeNavigator";
 import ServicesScreen from "../Screens/ServicesScreen";
 import ProductListScreen from "./GarageNavigator";
 import InquiryScreen from "../Screens/InquiryScreen";
@@ -86,6 +86,8 @@ export default function MyTabs() {
           headerLeft: () => <ChangeThemeButton isBgColored />,
           headerTitleStyle: {
             color: Colors.light,
+            marginTop: 5,
+            fontFamily: "PeydaBold",
           },
         })}
       />
@@ -94,7 +96,8 @@ export default function MyTabs() {
         name="Home"
         component={HomeScreen}
         options={{
-          title: "Car Online",
+          // title: "Car Online",
+          headerShown: false,
           tabBarLabel: "خانه",
           tabBarIcon: ({ focused }) => (
             <Ionicons
