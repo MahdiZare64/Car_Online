@@ -74,6 +74,17 @@ export default function App() {
           />
 
           <DrawerNavigationItem
+            label="محاسبه قیمت"
+            navigation={props.navigation}
+            icon={  <Ionicons
+                name="calculator"
+                size={25}
+                color={colorMode === "light" ? Colors.dark : Colors.light}
+              />}
+            navigateRoute="priceListScreen"
+          />
+
+          <DrawerNavigationItem
             label="فروشگاه"
             navigation={props.navigation}
             icon={

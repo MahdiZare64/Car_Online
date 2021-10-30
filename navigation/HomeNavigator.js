@@ -5,6 +5,9 @@ import HomeScreen from "../Screens/HomeScreen";
 
 import ExpertFormScreen from "../Screens/ExpertFormScreen";
 import ExpertCarSelectScreen from "../Screens/ExpertCarSelectScreen";
+import PriceListscreen from "../Screens/PriceListscreen";
+import priceDetailScreen from "../Screens/priceDetailScreen";
+
 import Colors from "../assets/Colors";
 import HeaderRight from "../components/HeaderRight";
 import ChangeThemeButton from "../components/ChangeThemeButton";
@@ -56,6 +59,39 @@ export default function GarageNavigator() {
         component={ExpertCarSelectScreen}
         options={({ navigation }) => ({
           title: "انتخاب خودرو",
+          headerRight: () => (
+            <HeaderRight isBgColored navigation={navigation} />
+          ),
+          headerLeft: () => <ChangeThemeButton isBgColored />,
+          headerTitleStyle: {
+            color: Colors.light,
+            marginTop: 5,
+            fontFamily: "PeydaBold",
+          },
+        })}
+      />
+
+      <Stack.Screen
+        name="priceListScreen"
+        component={PriceListscreen}
+        options={({ navigation }) => ({
+          title: "محاسبه قیمت",
+          headerRight: () => (
+            <HeaderRight isBgColored navigation={navigation} />
+          ),
+          headerLeft: () => <ChangeThemeButton isBgColored />,
+          headerTitleStyle: {
+            color: Colors.light,
+            marginTop: 5,
+            fontFamily: "PeydaBold",
+          },
+        })}
+      />
+      <Stack.Screen
+        name="priceDetailScreen"
+        component={priceDetailScreen}
+        options={({ navigation }) => ({
+          title: "محاسبه قیمت",
           headerRight: () => (
             <HeaderRight isBgColored navigation={navigation} />
           ),

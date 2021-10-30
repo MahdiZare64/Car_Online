@@ -4,47 +4,13 @@ import { View, useColorMode } from "native-base";
 
 import SelectDropdown from "react-native-select-dropdown";
 import { Entypo } from "@expo/vector-icons";
-const countries = [
-  "البرز",
-  "تهران",
-  "مازندران",
-  "تبریز",
-  "البرز",
-  "تهران",
-  "مازندران",
-  "تبریز",
-  "البرز",
-  "تهران",
-  "مازندران",
-  "تبریز",
-  "البرز",
-  "تهران",
-  "مازندران",
-  "تبریز",
-  "البرز",
-  "تهران",
-  "مازندران",
-  "تبریز",
-  "البرز",
-  "تهران",
-  "مازندران",
-  "تبریز",
-  "البرز",
-  "تهران",
-  "مازندران",
-  "تبریز",
-  "البرز",
-  "تهران",
-  "مازندران",
-  "تبریز",
-];
 
-export default function FormSelect({ placeholder, ...props }) {
+export default function FormSelect({ placeholder, data, ...props }) {
   const { colorMode } = useColorMode();
   return (
     <View>
       <SelectDropdown
-        data={countries}
+        data={data}
         onSelect={(selectedItem, index) => {
           console.log(selectedItem, index);
         }}
@@ -58,7 +24,16 @@ export default function FormSelect({ placeholder, ...props }) {
           styles.buttonText,
           colorMode === "light" ? styles.darkText : styles.lightText,
         ]}
-        dropdownStyle={styles.dropDown}
+        dropdownStyle={[
+          styles.dropDown,
+          colorMode === "light" ? styles.lightBg : styles.darkBg,
+        ]}
+        rowTextStyle={
+          colorMode === "light" ? styles.darkText : styles.lightText
+        }
+        rowStyle={{
+          borderBottomColor: colorMode === "light" ? "#F1F1F1" : "#333",
+        }}
         defaultButtonText={placeholder || "بدون عنوان"}
         renderDropdownIcon={() => (
           <Entypo

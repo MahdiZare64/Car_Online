@@ -12,6 +12,42 @@ import FormButton from "../components/FormButton";
 import FormCarSelect from "../components/FormCarSelect";
 import FormContactButton from "../components/FormContactButton";
 
+const time = ["14 الی 15", "17 الی 19", "20 الی 21", "8 الی 10", "10 الی 11"];
+
+const city = [
+  "آذربایجان شرقی",
+  "آذربایجان غربی",
+  "اردبیل",
+  "اصفهان",
+  "البرز",
+  "ایلام",
+  "بوشهر",
+  "تهران",
+  "چهارمحال وبختیاری",
+  "خراسان جنوبی",
+  "خراسان رضوی",
+  "خراسان شمالی",
+  "خوزستان",
+  "زنجان",
+  "سمنان",
+  "سیستان وبلوچستان",
+  "فارس",
+  "قزوین",
+  "قم",
+  "کردستان",
+  "کرمان",
+  "کرمانشاه",
+  "کهگیلویه وبویراحمد",
+  "گلستان",
+  "گیلان",
+  "لرستان",
+  "مازندران",
+  "مرکزی",
+  "هرمزگان",
+  "همدان",
+  "یزد",
+];
+
 export default function ExpertFormScreen({ navigation, route }) {
   const { height } = useWindowDimensions();
   const [level, setLevel] = useState(1);
@@ -64,12 +100,12 @@ export default function ExpertFormScreen({ navigation, route }) {
           />
           {level === 2 ? (
             <>
-              <FormSelect placeholder="آدرس موردنظر:" />
-              <FormSelect placeholder="انتخاب زمان کارشناسی:" />
+              <FormSelect placeholder="آدرس موردنظر:" data={["کرج", "تهران"]} />
+              <FormSelect placeholder="انتخاب زمان کارشناسی:" data={time} />
             </>
           ) : (
             <>
-              <FormSelect placeholder="انتخاب شهر:" />
+              <FormSelect placeholder="انتخاب شهر:" data={city} />
               <FormInput label="نام و نام خانوادگی :" />
               <FormInput label="شماره تلفن :" />
             </>
@@ -90,7 +126,10 @@ export default function ExpertFormScreen({ navigation, route }) {
             <FormButton onPress={() => setLevel(2)} label="مرحله بعد" />
           )}
         </View>
-        <FormContactButton style={{ marginBottom: 20 }} link="tel:+989124679926" />
+        <FormContactButton
+          style={{ marginBottom: 20 }}
+          link="tel:+989124679926"
+        />
       </ScrollView>
     </Wrapper>
   );

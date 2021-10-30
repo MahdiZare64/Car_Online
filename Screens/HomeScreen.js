@@ -35,9 +35,7 @@ export default function HomeScreen({ navigation }) {
             <TwinColorButton
               small={height < 750}
               label="کارشناسی خودرو"
-              onPress={() =>
-                navigation.navigate("expertForm")
-              }
+              onPress={() => navigation.navigate("expertForm")}
             />
             <View right={-50} top={-5} flexDirection="row" zIndex="-1">
               <Image
@@ -60,7 +58,12 @@ export default function HomeScreen({ navigation }) {
 
           {/* middle button */}
           <View height={height < 750 ? "50px" : "85px"}>
-            <TwinColorButton small={height < 750} label="محاسبه قیمت" isRight />
+            <TwinColorButton
+              small={height < 750}
+              label="محاسبه قیمت"
+              isRight
+              onPress={() => navigation.navigate("priceListScreen")}
+            />
             <View
               right={height < 750 ? -50 : -100}
               top={height < 750 ? -20 : -35}
