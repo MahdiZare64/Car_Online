@@ -7,6 +7,7 @@ import ExpertFormScreen from "../Screens/ExpertFormScreen";
 import ExpertCarSelectScreen from "../Screens/ExpertCarSelectScreen";
 import PriceListscreen from "../Screens/PriceListscreen";
 import priceDetailScreen from "../Screens/priceDetailScreen";
+import LoginScreen from "../Screens/LoginScreen";
 
 import Colors from "../assets/Colors";
 import HeaderRight from "../components/HeaderRight";
@@ -32,6 +33,7 @@ export default function GarageNavigator() {
           fontFamily: "PeydaBold",
         },
       })}
+      initialRouteName="login"
     >
       <Stack.Screen
         name="HomePage"
@@ -92,6 +94,22 @@ export default function GarageNavigator() {
         component={priceDetailScreen}
         options={({ navigation }) => ({
           title: "محاسبه قیمت",
+          headerRight: () => (
+            <HeaderRight isBgColored navigation={navigation} />
+          ),
+          headerLeft: () => <ChangeThemeButton isBgColored />,
+          headerTitleStyle: {
+            color: Colors.light,
+            marginTop: 5,
+            fontFamily: "PeydaBold",
+          },
+        })}
+      />
+       <Stack.Screen
+        name="login"
+        component={LoginScreen}
+        options={({ navigation }) => ({
+          title: "Car Online",
           headerRight: () => (
             <HeaderRight isBgColored navigation={navigation} />
           ),
