@@ -7,7 +7,6 @@ import TopCircle from "../components/TopCircle";
 import CustomInput from "../components/CustomInput";
 import FilterButton from "../components/FilterButton";
 import CarCard from "../components/CarCard";
-import FloatingButton from "../components/FloatingButton";
 
 import carsList from "../Dummy/carsList";
 import categoryList from "../Dummy/categoryList";
@@ -61,8 +60,6 @@ export default function carSelect({ navigation, route }) {
           />
         )}
       />
-
-      {route?.params?.isProduct ? <FloatingButton /> : <></>}
     </Wrapper>
   );
 }

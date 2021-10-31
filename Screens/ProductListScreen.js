@@ -70,7 +70,14 @@ export default function ProductListScreen({ navigation, route }) {
         )}
       />
 
-      {route?.params?.isProduct ? <FloatingButton /> : <></>}
+      {route?.params?.isProduct ? (
+        <FloatingButton
+          label="در خواست کارشناسی"
+          onPress={() => navigation.navigate("expertForm")}
+        />
+      ) : (
+        <></>
+      )}
     </Wrapper>
   );
 }

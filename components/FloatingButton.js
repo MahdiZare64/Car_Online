@@ -2,11 +2,10 @@ import React from "react";
 import { View, Text } from "native-base";
 import { TouchableOpacity } from "react-native";
 
-export default function FloatingButton() {
+export default function FloatingButton({ label, onPress }) {
   return (
-      <View position="absolute" bottom="50px" width="100%" alignItems="center">
-    <TouchableOpacity>
-
+    <View position="absolute" bottom="50px" width="100%" alignItems="center">
+      <TouchableOpacity onPress={onPress}>
         <View
           width="140px"
           height="30px"
@@ -21,10 +20,10 @@ export default function FloatingButton() {
             color="colors.light"
             textAlign="center"
           >
-            در خواست کارشناسی
+            {label}
           </Text>
         </View>
-    </TouchableOpacity>
-      </View>
+      </TouchableOpacity>
+    </View>
   );
 }

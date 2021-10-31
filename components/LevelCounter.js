@@ -23,8 +23,8 @@ const ActiveCircle = ({ num }) => (
   <View
     style={styles.circle}
     shadow="5"
-    _dark={{ bg: "colors.secondary" }}
-    _light={{ bg: "colors.primary" }}
+    _dark={{ bg: "colors.primary" }}
+    _light={{ bg: "colors.secondary" }}
   >
     <Text style={styles.text} color="colors.light">
       {num}

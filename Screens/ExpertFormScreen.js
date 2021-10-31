@@ -54,13 +54,13 @@ export default function ExpertFormScreen({ navigation, route }) {
   return (
     <Wrapper>
       <TopCircle top={-0.8} />
-      <View style={styles.iconWrapper}>
-        <ExpertIcon size={90} />
-        <Text style={styles.mainTitle} fontSize="lg">
-          کارشناسی خودرو
-        </Text>
-      </View>
       <ScrollView>
+        <View style={styles.iconWrapper}>
+          <ExpertIcon size={90} />
+          <Text style={styles.mainTitle} fontSize="lg">
+            کارشناسی خودرو
+          </Text>
+        </View>
         <View marginTop={height * 0.06} />
         <LevelCounter level={level} />
 
