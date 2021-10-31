@@ -9,20 +9,19 @@ import LevelCounter from "../components/LevelCounter";
 import FormInput from "../components/FormInput";
 import FormButton from "../components/FormButton";
 
-import http from "../utils/axiosTest";
-const h = http();
+import http from "../utils/http";
+const api = http();
 
 export default function ExpertFormScreen({ navigation, route }) {
   const { height } = useWindowDimensions();
   const [level, setLevel] = useState(1);
-
+  const [input, setInput] = useState({ code: "", phone: "" });
   const loginHandler = () => {
-    const callBack = (data) => {
-      console.log(data);
-    setLevel(2)
-
+    const callBack = ({ data }) => {
+      setInput(data.data);
+      setLevel(2);
     };
-    h.Login("09301462311", callBack);
+    api.Login(callBack, input);
   };
 
   return (
@@ -57,17 +56,26 @@ export default function ExpertFormScreen({ navigation, route }) {
               fontFamily="PeydaLight"
               _dark={{ color: "colors.lightGray" }}
               _light={{ color: "colors.gray" }}
+              textAlign="right"
             >
               شماره تماس خود را وارد کنید
             </Text>
           )}
           {level === 2 ? (
             <>
-              <FormInput label="کد ورود :" />
+              <FormInput
+                label="کد ورود :"
+                placeholder="مثال ۱۲۳۴۵"
+                onChangeText={(val) => setInput({ ...input, code: val })}
+              />
             </>
           ) : (
             <>
-              <FormInput label="شماره تماس :" />
+              <FormInput
+                label="شماره تماس :"
+                placeholder="مثال ۰۹۱۲۳۱۷۹۳۱۰"
+                onChangeText={(val) => setInput({ ...input, phone: val })}
+              />
             </>
           )}
           <View style={styles.center}>
