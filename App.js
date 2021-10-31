@@ -24,7 +24,9 @@ export default function App() {
       Restart();
     }
   });
-
+  console.log(process.env.BASE_URL);
+  //  env test
+  // vaghti env taghit mikne bayad stop kni va expo start -c ro bzni
   if (!font) {
     return <AppLoading />;
   } else {

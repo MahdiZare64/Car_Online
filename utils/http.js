@@ -8,7 +8,7 @@ import Toast from "react-native-toast-message";
 
 export default function http(token = "") {
   const instance = axios.create({
-    baseURL: "http://192.168.1.105:19000/api",
+    baseURL: process.env.BASE_URL_API,
   });
 
   // console.log("http base " + "http://192.168.1.105:19000/api/");
@@ -103,13 +103,14 @@ export default function http(token = "") {
       });
     }
   };
-  let success_display = (statusText) => {
+  let success_display = (status) => {
     // toast notification
-    if (!statusText) return;
-    if (typeof statusText == "string") {
+    console.log(status);
+    if (!status) return;
+    if (typeof status.message == "string") {
       Toast.show({
-        text2: statusText,
-        type: "success",
+        text2: status.message,
+        type: status.isSuccess ? "success" : "error",
       });
     }
   };
@@ -157,6 +158,9 @@ export default function http(token = "") {
       case 422:
         error_display(current_error, current_error_message);
         break;
+      case 415:
+        error_display(current_error, "اطلاعات وارد شده صحیح نمی باشد!");
+        break;
       case 500:
         //server error
         // if (typeof window !== "undefined") AsyncStorage.removeItem("token");
@@ -175,7 +179,10 @@ export default function http(token = "") {
       console.log("sending");
       return instance
         .post("/Token/Login", data)
-        .then(() => console.log("send!"))
+        .then((res) => {
+          callback(res);
+          success_display(res.data);
+        })
         .catch((err) => {
           console.log(err);
           if (errCallback) errCallback(err);
