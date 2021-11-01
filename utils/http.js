@@ -175,8 +175,12 @@ export default function http(token = "") {
     // **
     // inja bayad api hayi ke mikhay ro done be done bzari
     // **
-    Login: (callback, data, errCallback) => {
-      console.log("sending");
+    Login: (phone, callback, errCallback) => {
+      const data = {
+        code: "",
+        phone: phone,
+      };
+      console.log("loginig...");
       return instance
         .post("/Token/Login", data)
         .then((res) => {
@@ -184,15 +188,33 @@ export default function http(token = "") {
           success_display(res.data);
         })
         .catch((err) => {
-          console.log(err);
+          if (errCallback) errCallback(err);
+          else errors_handler(err);
+        });
+    },
+    LoginVerify: (data, callback, errCallback) => {
+      return instance
+        .post("Token/Verify", data)
+        .then((res) => {
+          callback(res);
+          success_display(res.data);
+        })
+        .catch((err) => {
+          console.log("errrr", err);
           if (errCallback) errCallback(err);
           errors_handler(err);
         });
     },
-    LoginVerify: (callback, data, errCallback) => {
+
+    GetAllProvinces: (callback, errCallback) => {
+      console.log("getting...")
       return instance
-        .post("Token/Verify", data)
-        .then(callback)
+        .post("http://192.168.43.206:5000/api/ChoseAddress/GetAllProvinces")
+        .then((res) => {
+          console.log("hdone")
+          callback(res);
+          success_display(res.data);
+        })
         .catch((err) => {
           console.log("errrr", err);
           if (errCallback) errCallback(err);

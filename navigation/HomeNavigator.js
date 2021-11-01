@@ -33,7 +33,7 @@ export default function GarageNavigator() {
           fontFamily: "PeydaBold",
         },
       })}
-      initialRouteName="login"
+      // initialRouteName="login"
     >
       <Stack.Screen
         name="HomePage"
@@ -105,7 +105,7 @@ export default function GarageNavigator() {
           },
         })}
       />
-       <Stack.Screen
+      <Stack.Screen
         name="login"
         component={LoginScreen}
         options={({ navigation }) => ({

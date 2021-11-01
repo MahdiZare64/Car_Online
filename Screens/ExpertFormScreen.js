@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, useWindowDimensions, ScrollView } from "react-native";
 import { Text, View } from "native-base";
 
@@ -12,45 +12,24 @@ import FormButton from "../components/FormButton";
 import FormCarSelect from "../components/FormCarSelect";
 import FormContactButton from "../components/FormContactButton";
 
+import http from "../utils/http";
+const api = http();
+
 const time = ["14 الی 15", "17 الی 19", "20 الی 21", "8 الی 10", "10 الی 11"];
 
-const city = [
-  "آذربایجان شرقی",
-  "آذربایجان غربی",
-  "اردبیل",
-  "اصفهان",
-  "البرز",
-  "ایلام",
-  "بوشهر",
-  "تهران",
-  "چهارمحال وبختیاری",
-  "خراسان جنوبی",
-  "خراسان رضوی",
-  "خراسان شمالی",
-  "خوزستان",
-  "زنجان",
-  "سمنان",
-  "سیستان وبلوچستان",
-  "فارس",
-  "قزوین",
-  "قم",
-  "کردستان",
-  "کرمان",
-  "کرمانشاه",
-  "کهگیلویه وبویراحمد",
-  "گلستان",
-  "گیلان",
-  "لرستان",
-  "مازندران",
-  "مرکزی",
-  "هرمزگان",
-  "همدان",
-  "یزد",
-];
+import prividences from "../Dummy/prividences";
 
 export default function ExpertFormScreen({ navigation, route }) {
   const { height } = useWindowDimensions();
   const [level, setLevel] = useState(1);
+  const [cities, setCities] = useState(prividences);
+
+  useEffect(() => {
+    const callBack = (data) => {
+      console.log("done", data);
+    };
+    api.GetAllProvinces(callBack);
+  }, []);
   return (
     <Wrapper>
       <TopCircle top={-0.8} />
@@ -105,7 +84,16 @@ export default function ExpertFormScreen({ navigation, route }) {
             </>
           ) : (
             <>
-              <FormSelect placeholder="انتخاب شهر:" data={city} />
+              <FormSelect
+                placeholder="انتخاب شهر:"
+                data={cities}
+                buttonTextAfterSelection={(selectedItem) => {
+                  return selectedItem.name;
+                }}
+                rowTextForSelection={(item) => {
+                  return item.name;
+                }}
+              />
               <FormInput label="نام و نام خانوادگی :" />
               <FormInput label="شماره تلفن :" />
             </>

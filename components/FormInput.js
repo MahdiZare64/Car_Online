@@ -2,7 +2,13 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { Text, View, Input } from "native-base";
 
-export default function FormInput({ label, placeholder, onChangeText }) {
+export default function FormInput({
+  label,
+  placeholder,
+  onChangeText,
+  value,
+  ...props
+}) {
   return (
     <View
       style={styles.inputBg}
@@ -16,6 +22,8 @@ export default function FormInput({ label, placeholder, onChangeText }) {
         onChangeText={onChangeText}
         style={styles.input}
         placeholder={placeholder}
+        value={value}
+        {...props}
       />
     </View>
   );
